@@ -1,5 +1,7 @@
 import {Component, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import {SetupItemViewArgs} from "nativescript-angular/directives";
+import dialogs = require("ui/dialogs");
+
 
 class Item {
     constructor(public name: string) { }
@@ -35,5 +37,60 @@ export class VdriveComponent {
         args.view.context.third = (args.index % 3 === 0);
         args.view.context.header = ((args.index + 1) % items.length === 1);
         args.view.context.footer = (args.index + 1 === items.length);
+    }
+
+    displayCallDialog() {
+        var options = {
+            title: "Call",
+            message: "Call.....",
+            okButtonText: "OK"
+        };
+        dialogs.alert(options).then(() => {
+            console.log("Race chosen!");
+        });
+    }
+
+    displayEmailDialog() {
+        var options = {
+            title: "Email",
+            message: "Email.....",
+            okButtonText: "OK"
+        };
+        dialogs.alert(options).then(() => {
+            console.log("Email chosen!");
+        });
+    }
+
+    displayUsageGuideDialog() {
+        var options = {
+            title: "Usage Guide",
+            message: "Email.....",
+            okButtonText: "OK"
+        };
+        dialogs.alert(options).then(() => {
+            console.log("Usage Guide chosen!");
+        });
+    }
+
+    displayPricingDialog() {
+        var options = {
+            title: "Pricing",
+            message: "Pricing.....",
+            okButtonText: "OK"
+        };
+        dialogs.alert(options).then(() => {
+            console.log("Pricing chosen!");
+        });
+    }
+
+    displayTermAndConditionDialog() {
+        var options = {
+            title: "TERM AND CONDITIONS",
+            message: "Term and conditions.....",
+            okButtonText: "OK"
+        };
+        dialogs.alert(options).then(() => {
+            console.log("Term and conditions chosen!");
+        });
     }
 }

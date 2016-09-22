@@ -39,10 +39,17 @@
             </template>
         </ListView>
     </StackLayout>
-    <StackLayout *tabItem="{title: 'Contact Us'}">
-            <Image marginTop="20px" marginBottom="10" src="res://icon" horizontalAlignment="center" width="80" height="80"></Image>
-            <Label color="blue" fontSize="20" text="NativeScript" textWrap="true" horizontalAlignment="center"></Label>
-        </StackLayout>
+     <StackLayout *tabItem="{title: 'CONTACT US'}">
+    <!-- >> grid-layout-html -->
+    <GridLayout columns="*,*" rows="*,*,*">
+      <Button text="CALL" rowSpan="1"   style="background-color: #FFFF66; margin: 5;" (tap)="displayCallDialog()"></Button>
+      <Button text="EMAIL" rowSpan="1" col="1"  style="background-color: #8C489F; margin: 5;" (tap)="displayEmailDialog()"></Button>
+      <Button text="USAGE GUIDE" row="1" rowSpan="1" style="background-color: #AA0078; margin: 5;" (tap)="displayUsageGuideDialog()"></Button>
+      <Button text="PRICING" row="1" rowSpan="1" col="1"  style="background-color: #0099CC; margin: 5;" (tap)="displayPricingDialog()"></Button>
+      <Button text="TERMS AND CONDITIONS" row="2" colSpan="2"  style="background-color: #0099CC; margin: 5;" (tap)="displayTermAndConditionDialog()"></Button>
+    </GridLayout>
+    <!-- << grid-layout-html -->
+  </StackLayout>
     </TabView>
 <!-- << basic-tab-view-html -->
 </GridLayout>
