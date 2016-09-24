@@ -1,5 +1,6 @@
-<ActionBar title="Groceries">
-  <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
+<ActionBar title="Customer Name">
+  <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+  <ActionItem ios.systemIcon="2" android.systemIcon="ic_menu_edit" ios.position="right" (tap)="logoff()"></ActionItem>
 </ActionBar>
 
 <GridLayout  exampleTitle toggleNavButton>

@@ -1,7 +1,8 @@
 import {Component, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import {SetupItemViewArgs} from "nativescript-angular/directives";
 import dialogs = require("ui/dialogs");
-
+import { Router } from "@angular/router";
+import {Location} from '@angular/common';
 
 class Item {
     constructor(public name: string) { }
@@ -25,7 +26,7 @@ export class VdriveComponent {
 
     public checked: boolean = false;
     
-    constructor(public elementRef: ElementRef) {
+    constructor(public elementRef: ElementRef,private router: Router,private location: Location) {
         this.dataItems = [];
 
         for (var i = 0; i < items.length; i++) {
@@ -92,5 +93,13 @@ export class VdriveComponent {
         dialogs.alert(options).then(() => {
             console.log("Term and conditions chosen!");
         });
+    }
+
+    goBack(){
+        this.location.back();
+    }
+
+    logoff() {
+        this.router.navigate(["/login"]);
     }
 }

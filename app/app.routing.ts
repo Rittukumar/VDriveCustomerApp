@@ -5,7 +5,8 @@ import { VdriveComponent } from "./pages/vdrive/vdrive.component";
 export const routes = [
   { path: "", component: LoginComponent },
   { path: "list", component: ListComponent },
-  { path: "vdrive", component: VdriveComponent }
+  { path: "vdrive", component: VdriveComponent },
+  { path: "login", component: LoginComponent }
 ];
 
 export const navigatableComponents = [

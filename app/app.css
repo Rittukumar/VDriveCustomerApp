@@ -5,7 +5,7 @@ Page {
   font-size: 15;
 }
 ActionBar {
-  background-color: black;
+  background-color: #3C5AFD;
   color: white;
 }
 TextField {
@@ -17,4 +17,16 @@ TextField {
 }
 .medium-spacing {
   margin: 10;
+}
+.action-image {
+    width: 40;
+    height: 40;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #3C5AFD;
+    font-size: 24;
+    font-weight: bold;
+    vertical-align: center;
 }
