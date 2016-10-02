@@ -9,6 +9,7 @@ import { prompt } from "ui/dialogs";
 import { User } from "../../shared/user/user";
 import { UserService } from "../../shared/user/user.service";
 import { setHintColor } from "../../utils/hint-util";
+import {Http, Headers} from "@angular/http";
 
 @Component({
   selector: "my-app",
@@ -60,14 +61,21 @@ export class LoginComponent implements OnInit {
   }
 
   signUp() {
+
     this.userService.register(this.user)
-      .subscribe(
-        () => {
-          alert("Your account was successfully created.");
-          this.toggleDisplay();
-        },
-        () => alert("Unfortunately we were unable to create your account.")
-      );
+    .subscribe(() => {
+        alert({
+          title: "Success",
+          message: "Your information was successfully updated!",
+          okButtonText: "OK"
+        });
+      }, () => {
+        alert({
+          title: "Error",
+          message: "An error occurred updating your data.",
+          okButtonText: "OK"
+        });
+      });
   }
 
   forgotPassword() {

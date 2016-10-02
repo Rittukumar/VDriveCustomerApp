@@ -30,3 +30,7 @@ TextField {
     font-weight: bold;
     vertical-align: center;
 }
+ActionBar {
+    background-color:  #3C5AFD;
+    color: white;
+}
