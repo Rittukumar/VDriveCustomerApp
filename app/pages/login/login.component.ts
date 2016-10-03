@@ -24,16 +24,21 @@ export class LoginComponent implements OnInit {
   @ViewChild("container") container: ElementRef;
   @ViewChild("email") email: ElementRef;
   @ViewChild("password") password: ElementRef;
+  @ViewChild("name") name: ElementRef;
+  @ViewChild("phone") phone: ElementRef;
 
   constructor(private router: Router, private userService: UserService, private page: Page) {
     this.user = new User();
-    this.user.email = "user@nativescript.org";
-    this.user.password = "password";
   }
 
   ngOnInit() {
     this.page.actionBarHidden = true;
     this.page.backgroundImage = this.page.ios ? "res://bg_login.jpg" : "res://bg_login";
+    let name = <TextField>this.name.nativeElement; 
+    name.set("visibility","collapsed"); 
+    let phone = <TextField>this.phone.nativeElement; 
+    phone.set("visibility","collapsed"); 
+    
   }
 
   submit() {
@@ -63,19 +68,18 @@ export class LoginComponent implements OnInit {
   signUp() {
 
     this.userService.register(this.user)
-    .subscribe(() => {
-        alert({
-          title: "Success",
-          message: "Your information was successfully updated!",
-          okButtonText: "OK"
-        });
-      }, () => {
-        alert({
-          title: "Error",
-          message: "An error occurred updating your data.",
-          okButtonText: "OK"
-        });
-      });
+    .map(res => res.json())
+    .subscribe(
+        (data) => {
+          console.log("success:" + JSON.stringify(data));
+          this.router.navigate(["/vdrive"]);
+        },
+        (err) => {
+          alert("An error occurred updating your data:" + JSON.stringify(err));
+        },
+        () => {
+        }
+      );
   }
 
   forgotPassword() {
@@ -102,6 +106,14 @@ export class LoginComponent implements OnInit {
     this.isLoggingIn = !this.isLoggingIn;
     this.setTextFieldColors();
     let container = <View>this.container.nativeElement;
+
+    if(!this.isLoggingIn) {
+      let name = <TextField>this.name.nativeElement; 
+      name.set("visibility","visible"); 
+      let phone = <TextField>this.phone.nativeElement; 
+      phone.set("visibility","visible"); 
+    }
+
     container.animate({
       backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#301217"),
       duration: 200
@@ -111,13 +123,19 @@ export class LoginComponent implements OnInit {
   setTextFieldColors() {
     let emailTextField = <TextField>this.email.nativeElement;
     let passwordTextField = <TextField>this.password.nativeElement;
+    let userTextField = <TextField>this.name.nativeElement;
+    let phoneTextField = <TextField>this.phone.nativeElement;
 
     let mainTextColor = new Color(this.isLoggingIn ? "black" : "#C4AFB4");
     emailTextField.color = mainTextColor;
     passwordTextField.color = mainTextColor;
+    userTextField.color = mainTextColor;
+    phoneTextField.color = mainTextColor;
 
     let hintColor = new Color(this.isLoggingIn ? "#ACA6A7" : "#C4AFB4");
     setHintColor({ view: emailTextField, color: hintColor });
     setHintColor({ view: passwordTextField, color: hintColor });
+    setHintColor({ view: userTextField, color: hintColor });
+    setHintColor({ view: phoneTextField, color: hintColor });
   }
 }
